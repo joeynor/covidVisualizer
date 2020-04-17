@@ -1,0 +1,49 @@
+No.,Patient Case Code,Date of death,Time of death,Gender,Age,Race,Nationality,Date of First Treatment,Hospital,State Code for hosp,Patient state of origin,Connection with other Covid patients,Patient Case Code,Other relevant info
+1,178,03-17-2020,,L,34,,MY,03/12/2020,"Hosp Permai, JB",11,,,,
+2,358,03-17-2020,,L,60,,MY,03/07/2020,Hosp Umum Sarawak,13,,,,in ICU
+3,152,03-20-2020,18:27,L,58,,MY,,"Tawau, Sabah",12,Trengganu,,,KJT
+4,238,03-21-2020,1:30,L,50,,MY,03/12/2020,Melaka,10,,,,
+5,1031,03-18-2020,,P,79,,MY,,Borneo Medical Center,13,,Ibu kpd kes 1032,1032,
+6,1032,03-21-2020,,P,40,,MY,,"Hosp Umum, Sarawak",13,,anak kpd 1031,1031,
+7,290,03-21-2020,,L,57,,MY,,KL,14,,,,Travelled Vietnam & close contact KJT
+8,781,03-21-2020,,L,69,,MY,,Tumpat,5,,,,"KJT, perhimpunan Masjid Jamek"
+9,890,03-22-2020,,L,48,,MY,,Kangar,4,,,,"Travelled Turkey, a medical doctor"
+10,259,03-22-2020,,L,74,,MY,,P. Pinang,3,,,,"KJT, perhimpunan Masjid Jamek"
+11,1070,03-23-2020,,L,70,,MY,,Hosp Cancelor Tuanku Mukhriz,14,,,,Travelled overseas
+12,1114,03-23-2020,,L,70,,MY,,Kluang,11,,,,"KJT, perhimpunan Masjid Jamek Sri Petaling"
+13,1006,03-23-2020,,L,49,,MY,,Sarawak,13,,anak kpd 1031,1031,
+14,595,03-23-2020,,P,51,,MY,,Miri,13,,,,close contact kes +Covic19
+15,1519,03-24-2020,5:35,L,70,,MY,01/18/1900,"Hosp Pakar Sultaah Fatimah, Muar",11,Melaka,,703,"darah tinggi, diabetes, contact  to 703 solat Jumaat"
+16,1334,03-24-2020,19:40,L,75,,MY,,HAT Tuanku Mizan - HKL,14,,,,latar belakang penyakit kronik
+17,1231,03-25-2020,4:10,L,66,,MY,,"Hosp Pakar Sultaah Fatimah, Muar",11,,,,latar belakang penyakit kronik dan sejarah contact +ve COVID-19 lain
+18,1625,03-23-2020,2:00,L,56,,MY,,"Hosp Sultan Ismail, Johor",11,,,,latar belakang penyakit kronik
+19,1246,03-25-2020,0:53,P ,68,,MY,,"Hosp Sutanah Nora Ismail, Johor",11,,,,bantuan pernafasan ICU
+20,780,,,L,76,,MY,,"Hosp Sultan Ismail Petra, Kelantan",5,,,,KJT
+21,1588,03-26-2020,4:00,L,63,,MY,03/23/2020,"Hospital Sultanah Bahiyah, Alor Setar",2,,,,"latar belakang penyakit kronik, peserta JT"
+22,1797,03-23-2020,20:15,L,48,,MY,,Hospital Enche’ Besar Hajjah Khalsom,,,,,menghadiri perhimpunan di Seri Petaling & kontak rapat dengan kes positif COVID-19 
+23,1840,03-25-2020,12:37,L,62,,MY,03/23/2020,"Hospital Raja Permaisuri Bainun, Ipoh,",4,Kajang,,,Pending investigation
+24,1056,03-26-2020,21:30,L,35,,MY,03/20/2020,HKL,14,,,,sejarah perjalanan ke Indonesia pada awal bulan Mac 2020. 
+25,2032,03-26-2020,18:55,L,83,,MY,,Hospital Raja Permaisuri Bainun ,4,,,,latar belakang penyakit kronik
+26,1321,03-27-2020,10:30,L,53,,MY,03/22/2020,Sg. Buluh,8,,,1309,close contact to 1309 
+27,2162,03-28-2020,10:50,L,61,,MY,03/24/2020,"Hospital Pakar Sultanah Fatimah, Muar ",11,,,,diabetes dan darah tinggi. Di hospital Tangkak pd 200324
+28,2321,03-28-2020,8:48,P,91,,MY,03/26/2020,Pusat Perubatan Universiti Malaya (PPUM) ,14,,,,"latar belakang penyakit kencing manis, darah tinggi dan penyakit buah pinggang"
+29,2123,03-28-2020,22:15,P,64,,MY,03/25/2020,"Hospital Tuanku Ja’afar, Negeri Sembilan ",9,,,,latar belakang penyakit kencing manis dan darah tinggi
+30,2322,03-28-2020,23:33,L,76,,MY,,Pusat Perubatan Universiti Malaya (PPUM) ,14,,,,"penyakit kencing manis, darah tinggi dan penyakit buah pinggang."
+31,2323,03-28-2020,19:44,L,27,,MY,03/27/2020,"Hospital Raja Permaisuri Bainun, Ipoh",4,,,,"latar belakang penyakit kencing manis, darah tinggi dan penyakit buah pinggang"
+32,1239,03-28-2020,19:44,L,50,,MY,03/22/2020,"Hospital Enche’ Besar Hjh Kalsom, Johor ",11,,,,latar belakang penyakit darah tinggi. Beliau merupakan peserta perhimpunan Seri Petaling
+33,1249,03-28-2020,23:25,L,37,,MY,03/21/2020,"Hospital Permai, Johor",11,,,,Beliau mempunyai sejarah perjalanan ke negara India
+34,787,03-29-2020,10:40,L,77,,MY,03/18/2020,HKL,14,,,,penyakit darah tinggi
+35,,29-03020,16:00,P,57,,MY,,Hosp Sg. Buluh,8,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,Death Cases of COVID-19 in Malaysia,,,,,,,, Source: From the Desk of the Director-General of Health Malaysia https://kpkesihatan.com/,,"Compiled by: Normaziah and Irfan @ TTDI, March 2020",,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,

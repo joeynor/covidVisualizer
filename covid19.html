@@ -1,0 +1,472 @@
+<!-- Load c3.css -->
+<link href="./c3/c3.css" rel="stylesheet">
+
+<!-- Load d3.js and c3.js -->
+<script src="./d3/d3.min.js" charset="utf-8"></script>
+<script src="./c3/c3.min.js"></script>
+
+<html>
+  <head>
+    <title>
+      Visualizing Covid 19 Data in Malaysia
+      </title>
+    <link href="./c3/c3.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+   div.b {
+     font-size: small;
+   }
+
+   .button1 {border-radius: 12px;}
+
+   .button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+p {text-align:center;}
+ </style>
+  </head>
+  <body>
+    <div class="b">
+    <p>Visualizing Covid 19 Data in Malaysia</p>
+    <div id="chart"></div>
+      * Use the Scroll mouse to zoom into the graph, and drag to move in zoom mode.
+      <ol>
+        <li>Current cases in Malaysia can be seen as the graph above. The major event of Gathering in Masjid Sri Petaling can be shown on the 27th Feb. <button class="button1" onclick="tabligh();">Sri Petaling Gathering</button>.</li>
+        <li>Due to the rise in reported cases, Movement Control Order is issued on the 18th. <button class="button1" onclick="mco();">Movement Control Order</button>.</li>
+        <li>The growth is indeed exponential. Which can be seen in this regression model to predict future growth without MCO enforced.<button class="button1" onclick="prediction();">Prediction no MCO</button></li>
+        <li>Prediction by JP Morgan and MIERS says that Malaysia will peak at around 9k by June. Here is a prediction of that growth if we tried to fix a model based on 1/(1+e^(-wx+b))<button class="button1" onclick="prediction100();">Prediction till End of May 9k</button></li>
+        <li>Unfortunately, during the MCO, about 55% of people were seen leaving the city and other isolated gatherings including school holidays. This changes the curve about 1 week later.<button class="button1" onclick="prediction55();">Prediction where 55% moved in the initial MCO</button></li>
+        <li>If we compare ourselves to Italy, they started much earlier <button class="button1" onclick="italyori();">Italy Cases</button></li>
+        <li>If we compare ourselves to Swiss, they started much earlier <button class="button1" onclick="swissori();">Swiss Cases</button></li>
+        <li>If we compare the time when the virus starts to spread in Italy, we can see that we are much alike <button class="button1" onclick="italy();">Italy vs. Malaysia</button></li>
+        <li>If we compare the time when the virus starts to spread in Swiss, we can see that we are much alike <button class="button1" onclick="swiss();">Swiss vs. Malaysia</button></li>
+</ol>
+    We hope that we will flatten the curve. In China, lockdown was issued Jan 23rd, they saw a flattening of the curve after 3 weeks.<br>
+     If we consider the same behavior, we can expect the flattening of the curve to start after the 3 weeks of the MCO if it was done successfully.<br>
+    However, reports from a Vehicle Tracking Company notice 70% of their drivers were out moving about actively during the MCO. This might effect the success factor of the MCO. <br>
+If you would like to share this link, you can use this <a href="https://bit.ly/3dwmdAM">https://bit.ly/3dwmdAM</a> or via whatsapp <a href="https://wa.me/?text=https://bit.ly/3dwmdAM">Share me on Whatsapp</a>.
+    </div>
+    <script src="./d3/d3.min.js" charset="utf-8"></script>
+    <script src="./c3/c3.js"></script>
+    <script>
+      var chart = c3.generate({
+        size: {
+        height: 400,
+        width: 1024
+    },
+        data: {
+	  x: 'x',
+          columns:[ ['x',
+          //'2020-1-22','2020-1-23','2020-1-24','2020-1-25','2020-1-26','2020-1-27','2020-1-28','2020-1-29','2020-1-30','2020-1-31','2020-2-1','2020-2-2','2020-2-3','2020-2-4','2020-2-5','2020-2-6','2020-2-7','2020-2-8','2020-2-9','2020-2-10','2020-2-11','2020-2-12','2020-2-13','2020-2-14','2020-2-15','2020-2-16',
+          //'2020-2-17','2020-2-18','2020-2-19','2020-2-20','2020-2-21',
+          '2020-2-22','2020-2-23','2020-2-24','2020-2-25','2020-2-26','2020-2-27','2020-2-28',
+          '2020-2-29','2020-3-1','2020-3-2','2020-3-3','2020-3-4','2020-3-5','2020-3-6',
+          '2020-3-7','2020-3-8','2020-3-9','2020-3-10','2020-3-11','2020-3-12','2020-3-13',
+          '2020-3-14','2020-3-15','2020-3-16','2020-3-17','2020-3-18','2020-3-19','2020-3-20',
+          '2020-3-21','2020-3-22','2020-3-23','2020-3-24','2020-3-25','2020-3-26','2020-3-27',
+          '2020-3-28','2020-3-29','2020-3-30','2020-3-31','2020-4-01','2020-4-02','2020-4-03',
+          '2020-4-04','2020-4-05','2020-4-06','2020-4-07','2020-4-08','2020-4-09','2020-4-10'
+          ],
+            ['data1',
+            //0,0,0,3,4,4,4,7,8,8,8,8,8,10,12,12,12,16,16,18,18,18,19,19,
+            22,22,22,22,22,23,23,
+            25,29,29,36,50,50,83,
+            93,99,117,129,149,149,197,
+            238,428,566,673,790,900,1030,
+            1183,1306,1518,1624, 1796,2031,2161,
+            2320,2470, 2626, 2766],
+          ],
+          names: {
+            data1: 'Current +ve Cases',
+            data2: 'Prediction No MCO',
+            data3: 'Italy',
+            data4: 'Swiss',
+            data5: 'Prediction 55% Moved during MCO',
+            data6: 'Model to Fit Plateau at 9k'
+          },
+
+          types: {
+            data1: 'spline',
+            data2: 'spline',
+            data3: 'spline',
+            data4: 'spline'
+          }
+        },
+        spline: {
+          interpolation: {
+            type: 'monotone', // 'cardinal' is default
+          },
+        },
+	axis: {
+        	x: {
+           	 type: 'timeseries',
+            	tick: {
+                format: '%d-%m'
+           	 },
+		label: {
+			text: 'Date',position: 'outer-middle'}
+        	}
+    	},
+      grid: {
+        x: {
+            show: false,
+            lines: [
+              {value: '2020-03-18', text:'MCO1 '}, {value: '2020-03-31', text: 'MCO2 Extension'}, {value: '2020-04-8', text: 'Possible peak at April 8th, with 269 new cases/day'},{value: '2020-04-14', text: 'End of MCO'}
+            ]
+        },
+        y: {
+            show: true
+        }
+    },
+    zoom: {
+    enabled: true
+  }
+      });
+
+function mco(){
+      setTimeout(function () {
+          chart.xgrids([{value: '2020-03-18', text:'MCO1 '}, {value: '2020-03-31', text: 'MCO2 Extension'},{value: '2020-04-8', text: 'Possible peak at April 8th, with 269 new cases/day'}, {value: '2020-04-14', text: 'End of MCO'}]);
+      }, 500);
+}
+
+function tabligh(){
+      setTimeout(function () {
+          chart.xgrids([{value: '2020-02-28', text:'Masjid Sri Petaling'}, {value: '2020-03-12', text: 'Masjid Sri Petaling 2w'}]);
+      }, 500);
+}
+var italybutton = true
+var italyoributton = true
+function italyori(){
+  if (italyoributton){
+  chart.load({
+    columns: [
+        ['data3',
+        //0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,20,
+        62,155,229,322,453,655,888,
+        1128,1694,2036,2502,3089,3858,4636,
+        5883,7375,9172,10149,12462,12462,17660,
+        21157,24747,27980,31506,35713,41035,47021,
+        53578,59138,	63927,69176, 74386, 80589, 86498,
+        92472,	97689,	101739]
+
+    ]});
+    chart.xgrids([
+              {value: '2020-02-23', text:'Italy MCO 1 21st'},
+              {value: '2020-03-8', text: 'Italy MCO 2'},
+              {value: '2020-03-21', text: 'Italy MCO 3'}
+            ]);
+  italyoributton=false
+  italybutton=true
+}
+  else{
+    chart.unload({
+       ids: ['data3']
+    });
+    italyoributton=true;
+  }
+}
+function italy(){
+    if (italybutton){
+      chart.load({
+        columns: [  ['x',
+        '2020-3-12','2020-3-13',
+        '2020-3-14','2020-3-15','2020-3-16','2020-3-17','2020-3-18','2020-3-19','2020-3-20',
+        '2020-3-21','2020-3-22','2020-3-23','2020-3-24','2020-3-25','2020-3-26','2020-3-27',
+        '2020-3-28','2020-3-29','2020-3-30','2020-3-31'],
+                ['data3',
+                //197,238,428,553,655, 888, 1128, 1694, 2036]
+                20,62,155,
+                229,322,453,655,888,1128,1694,
+                2036,2502,3089,3858,4636, 5883,7375,
+                9172,10149,12462,12462]
+                ]});
+              italybutton=false;
+              italyoributton=true;
+            }
+    else{
+      chart.unload({
+        ids: ['data3']
+        });
+        italybutton=true;
+        }
+}
+
+swissoributton=true
+swissbutton=true;
+function swissori(){
+    if (swissoributton){
+      chart.load({
+        columns: [
+                ['data4',
+                //197,238,428,553,655, 888, 1128, 1694, 2036
+                0,	0,	0,	1,	1,	8,	8,
+                18,	27,	42,	56,	90,	114,	214,
+                268,	337,	374,	491,	652,	652,	1139,
+                1359,	2200,	2200,	2700,	3028,	4075,	5294,
+                6575,	7474,	8795,9877,10897,11811,	12928	,
+                14076,	14829,	15922]
+                ] });
+              chart.xgrids([
+                        {value: '2020-03-16', text:'Swiss MCO'}
+                      ]);
+              swissbutton=true;
+              swissoributton=false;
+            }
+    else{
+      chart.unload({
+        ids: ['data4']
+        });
+        swissoributton=true;
+        }
+}
+
+function swiss(){
+    if (swissbutton){
+      chart.load({
+        columns: [  ['x','2020-2-28',
+        '2020-2-29','2020-3-1','2020-3-2','2020-3-3','2020-3-4','2020-3-5','2020-3-6',
+        '2020-3-7','2020-3-8','2020-3-9','2020-3-10','2020-3-11','2020-3-12','2020-3-13',
+        '2020-3-14','2020-3-15','2020-3-16','2020-3-17','2020-3-18','2020-3-19','2020-3-20',
+        '2020-3-21','2020-3-22','2020-3-23','2020-3-24','2020-3-25','2020-3-26','2020-3-27',
+        '2020-3-28','2020-3-29','2020-3-30','2020-3-31'],
+        ['data4',
+        //197,238,428,553,655, 888, 1128, 1694, 2036]
+        0,	0,	0,	1,	1,	8,	8,
+        18,	27,	42,	56,	90,	114,	214,
+        268,	337,	374,	491,	652,	652,	1139,
+        1359,	2200,	2200,	2700,	3028,	4075,	5294,
+        6575,	7474,	8795]
+                ]
+              });
+              swissbutton=false;
+              swissoributton=true;
+            }
+    else{
+      chart.unload({
+        ids: ['data4']
+        });
+        swissbutton=true;
+        }
+}
+
+  predictionbutton=true
+function prediction(){
+      if (predictionbutton){
+        chart.load({
+          columns: [ ['x','2020-03-04','2020-03-05','2020-03-06','2020-03-07','2020-03-08','2020-03-09','2020-03-10','2020-03-11','2020-03-12','2020-03-13','2020-03-14','2020-03-15','2020-03-16','2020-03-17','2020-03-18','2020-03-19','2020-03-20','2020-03-21','2020-03-22','2020-03-23','2020-03-24','2020-3-25','2020-3-26','2020-3-27','2020-3-28','2020-3-29','2020-3-30','2020-3-31'],
+          ['data2',
+      //45.02434284, 54.70763589,66.47349491, 80.76981309, 98.14081111, 119.247754, 144.8941239,176.0562058,213.9202529,259.9276428,315.8297477,383.7546037,466.2879191,566.5715053,688.4228766,836.4805725,1016.380733,1234.971653,1500.574472,1823.299946,2215.433325,2691.902025,3270.843872,3974.297554,4829.041576,5867.613641,7129.54927,8662.886806]
+      50,      60,      72,      86,      104,      124,
+      149,      179,      215,      258,      310,      372,      446,
+      535,      642,      770,      924,      1109,      1331,      1597,
+      1917,      2300,      2760,      3312,      3975,      4770,      5724,
+      6869,      8242,9891,11869,14243,17091,20509
+      ]]
+    });
+    predictionbutton=false;
+  }
+else{
+  chart.unload({
+     ids: ['data2']
+  });
+  predictionbutton=true;
+  }
+}
+
+prediction55button=true
+function prediction55(){
+    if (prediction55button){
+      chart.load({
+        columns: [ ['x','2020-03-04','2020-03-05','2020-03-06','2020-03-07','2020-03-08','2020-03-09','2020-03-10','2020-03-11','2020-03-12','2020-03-13','2020-03-14','2020-03-15','2020-03-16','2020-03-17','2020-03-18','2020-03-19','2020-03-20','2020-03-21','2020-03-22','2020-03-23','2020-03-24','2020-3-25','2020-3-26','2020-3-27','2020-3-28','2020-3-29','2020-3-30','2020-3-31'],
+        ['data5',
+    //45.02434284, 54.70763589,66.47349491, 80.76981309, 98.14081111, 119.247754, 144.8941239,176.0562058,213.9202529,259.9276428,315.8297477,383.7546037,466.2879191,566.5715053,688.4228766,836.4805725,1016.380733,1234.971653,1500.574472,1823.299946,2215.433325,2691.902025,3270.843872,3974.297554,4829.041576,5867.613641,7129.54927,8662.886806]
+    50,
+    60,
+    72,
+    86,
+    104,
+    124,
+    149,
+    179,
+    215,
+    258,
+    310,
+    372,
+    446,
+    535,
+    642,
+    770,
+    924,
+    1109,
+    1331,
+    1478,
+    1640,
+    1821,
+    2021,
+    2243,
+    2490,
+    2764,
+    3068,
+    3405
+
+    ]]
+  });
+  prediction55button=false;
+}
+else{
+chart.unload({
+   ids: ['data5']
+});
+prediction55button=true;
+}
+}
+
+prediction100button=true
+function prediction100(){
+    if (prediction100button){
+      chart.load({
+        columns: [ ['x',
+        '2020-03-04','2020-03-05','2020-03-06','2020-03-07','2020-03-08','2020-03-09','2020-03-10','2020-03-11','2020-03-12','2020-03-13','2020-03-14','2020-03-15','2020-03-16','2020-03-17','2020-03-18','2020-03-19','2020-03-20','2020-03-21','2020-03-22','2020-03-23','2020-03-24','2020-3-25','2020-3-26','2020-3-27','2020-3-28','2020-3-29',
+        '2020-3-30',         '2020-3-31',         '2020-04-01',        '2020-04-02',        '2020-04-03',        '2020-04-04',        '2020-04-05',
+        '2020-04-06',        '2020-04-07',        '2020-04-08',        '2020-04-09',        '2020-04-10',        '2020-04-11',        '2020-04-12',
+        '2020-04-13',        '2020-04-14',        '2020-04-15',        '2020-04-16',        '2020-04-17',        '2020-04-18',        '2020-04-19',
+        '2020-04-20',        '2020-04-21',        '2020-04-22',        '2020-04-23',        '2020-04-24',        '2020-04-25',        '2020-04-26',
+        '2020-04-27',        '2020-04-28',        '2020-04-29',        '2020-04-30',        '2020-05-01',        '2020-05-02',        '2020-05-03',
+        '2020-05-04',        '2020-05-05',        '2020-05-06',        '2020-05-07',        '2020-05-08',        '2020-05-09',        '2020-05-10',
+        '2020-05-11',        '2020-05-12',        '2020-05-13',        '2020-05-14',        '2020-05-15',        '2020-05-16',        '2020-05-17',
+        '2020-05-18',        '2020-05-19',        '2020-05-20',        '2020-05-21',        '2020-05-22',        '2020-05-23',        '2020-05-24',
+        '2020-05-25',        '2020-05-26',        '2020-05-27',        '2020-05-28',        '2020-05-29',        '2020-05-30',        '2020-05-31'
+        ],
+        ['data6',
+    //45.02434284, 54.70763589,66.47349491, 80.76981309, 98.14081111, 119.247754, 144.8941239,176.0562058,213.9202529,259.9276428,315.8297477,383.7546037,466.2879191,566.5715053,688.4228766,836.4805725,1016.380733,1234.971653,1500.574472,1823.299946,2215.433325,2691.902025,3270.843872,3974.297554,4829.041576,5867.613641,7129.54927,8662.886806]
+    135,
+    152,
+    171,
+    192,
+    216,
+    243,
+    273,
+    307,
+    344,
+    386,
+    433,
+    485,
+    543,
+    608,
+    679,
+    759,
+    846,
+    943,
+    1049,
+    1165,
+    1293,
+    1431,
+    1581,
+    1744,
+    1918,
+    2105,
+    2305,
+    2516,
+    2739,
+    2972,
+    3215,
+    3466,
+    3724,
+    3988,
+    4255,
+    4523,
+    4791,
+    5057,
+    5319,
+    5575,
+    5824,
+    6064,
+    6294,
+    6513,
+    6720,
+    6915,
+    7098,
+    7269,
+    7427,
+    7573,
+    7708,
+    7832,
+    7944,
+    8047,
+    8141,
+    8226,
+    8302,
+    8371,
+    8434,
+    8490,
+    8540,
+    8585,
+    8626,
+    8662,
+    8694,
+    8723,
+    8749,
+    8772,
+    8793,
+    8811,
+    8827,
+    8842,
+    8855,
+    8866,
+    8876,
+    8885,
+    8893,
+    8901,
+    8907,
+    8913,
+    8918,
+    8922,
+    8926,
+    8929,
+    8933,
+    8935,
+    8938,
+    8940,
+    8942,
+    8944,
+    8945,
+    8946,
+    8948,
+    8949,
+    8950,
+    8950,
+    8951,
+    8952,
+    8952,
+    8953,
+    8953,
+    8954,
+    8954,
+    8954,
+    8955
+
+    ]]
+  });
+  prediction100button=false;
+}
+else{
+chart.unload({
+   ids: ['data6']
+});
+prediction100button=true;
+}
+}
+prediction100();
+
+function unprediction(){
+
+	chart.unload({
+ 	   ids: ['data2']
+	});
+	}
+    </script>
+<br><br>
+    <p>&copy; 2020 rizalmohdnor[at]iium.edu.my<p>
+  </body>
+
+</html>

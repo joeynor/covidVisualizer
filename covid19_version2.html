@@ -1,0 +1,105 @@
+<!-- Load c3.css -->
+<link href="./c3/c3.css" rel="stylesheet">
+
+<!-- Load d3.js and c3.js -->
+<script src="./d3/d3.min.js" charset="utf-8"></script>
+<script src="./c3/c3.min.js"></script>
+
+<html>
+  <head>
+    <link href="./c3/c3.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="chart"></div>
+    <button onclick="prediction();">Prediction of Reported Cases</button>
+    <button onclick="unprediction();">Reset</button>
+
+    <script src="./d3/d3.min.js" charset="utf-8"></script>
+    <script src="./c3/c3.js"></script>
+    <script>
+    var chart = c3.generate({
+        data: {
+            x: 'x',
+            columns: [
+                ['x', '2012-12-29', '2012-12-30', '2012-12-31'],
+                ['data1', 230, 300, 330],
+                ['data2', 190, 230, 200],
+                ['data3', 90, 130, 180],
+            ]
+        },
+        axis: {
+            x: {
+                type: 'timeseries',
+                tick: {
+                    format: '%m/%d',
+                }
+            }
+        }
+    });
+
+    setTimeout(function () {
+        chart.flow({
+            columns: [
+                ['x', '2013-01-11', '2013-01-21'],
+                ['data1', 500, 200],
+                ['data2', 100, 300],
+                ['data3', 200, 120],
+            ],
+            duration: 1500,
+            done: function () {
+                chart.flow({
+                    columns: [
+                        ['x', '2013-02-11', '2013-02-12', '2013-02-13', '2013-02-14'],
+                        ['data1', 200, 300, 100, 250],
+                        ['data2', 100, 90, 40, 120],
+                        ['data3', 100, 100, 300, 500]
+                    ],
+                    length: 0,
+                    duration: 1500,
+                    done: function () {
+                        chart.flow({
+                            columns: [
+                                ['x', '2013-03-01', '2013-03-02'],
+                                ['data1', 200, 300],
+                                ['data2', 150, 250],
+                                ['data3', 100, 100]
+                            ],
+                            length: 2,
+                            duration: 1500,
+                            done: function () {
+                                chart.flow({
+                                    columns: [
+                                        ['x', '2013-03-21', '2013-04-01'],
+                                        ['data1', 500, 200],
+                                        ['data2', 100, 150],
+                                        ['data3', 200, 400]
+                                    ],
+                                    to: '2013-03-01',
+                                    duration: 1500,
+                                });
+                            }
+                        });
+                    }
+                });
+            },
+        });
+    }, 1000);
+function prediction(){
+chart.load({
+  columns: [
+      ['data2', 45.02434284, 54.70763589,66.47349491, 80.76981309, 98.14081111, 119.247754, 144.8941239,176.0562058,213.9202529,259.9276428,315.8297477,383.7546037,466.2879191,566.5715053,688.4228766,836.4805725,1016.380733,1234.971653,1500.574472,1823.299946,2215.433325,2691.902025,3270.843872,3974.297554,4829.041576,5867.613641,7129.54927,8662.886806]
+
+  ]
+});
+}
+
+function unprediction(){
+
+	chart.unload({
+ 	   ids: ['data2']
+	});
+	}
+    </script>
+  </body>
+
+</html>
